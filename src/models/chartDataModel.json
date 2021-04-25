@@ -1,0 +1,11 @@
+{
+  "id": "c1",
+  "name": "Cafeteria central",
+  "date": "01/30/2021",
+  "maxCapacity": 50,
+  "capacityLog": {
+    "9:00": 23,
+    "10:00": 17,
+    "11:00": 34
+  }
+}
