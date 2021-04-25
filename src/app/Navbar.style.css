@@ -1,0 +1,38 @@
+.navbar{
+  background-color: #28527A;
+  height: 80px;
+  display: flex;
+  min-width: 100%;
+}
+
+.navbar__title{
+  margin-left: 30px;
+  margin-top: 20px;
+  font-size: x-large;
+  color: aliceblue;
+  font-weight: 600;
+}
+
+.navbar__actions{
+  right: 0;
+  position: absolute;
+  margin-right: 30px;
+  justify-content: space-around;
+  width: 30%;
+  height: inherit;
+  display: flex;
+}
+.navbar__actions>button{
+  background-color: #28527A;
+  color: aliceblue;
+  border: 0 none;
+  outline: none;
+  cursor: pointer;
+  font-size: large;
+}
+.navbar__actions>button:hover{
+  background-color: #4679a8;
+}
+.navbar__actions>button:active{
+  background-color:#47698a ;
+}
