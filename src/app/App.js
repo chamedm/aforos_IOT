@@ -1,14 +1,15 @@
 import './App.css';
 import Navbar from './Navbar';
-import LineChart from '../card/LineChart';
-import InfoCard from '../card/InfoCard';
 
+import PlaceItem from '../card/PlaceItem';
 function App() {
   return (
     <div className="App">
       <Navbar/>
-      <LineChart/>
-      <InfoCard/>
+      <p>
+        Dashboard
+      </p>
+      <PlaceItem/>
     </div>
   );
 }
