@@ -1,0 +1,35 @@
+.info-card{
+  display:flex;
+  flex-direction: column;
+  width: 30%;
+  background-color: #F2F2F2;
+  border-radius: 10px;
+}
+
+.info-card__title{
+  font-size: large;
+  font-weight: bold;
+  display: flex;
+  margin-left: 30px;
+}
+
+.info-card__data--first-row{
+  border-bottom: 1px solid #D8D6D6;
+  margin-block-end: 10px;
+}
+
+.info-card__data > *{
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 20px 0 20px;
+}
+
+.info-card__item > p:nth-child(1){
+  margin-block-end: 0;
+}
+.info-card__item > p:nth-child(2){
+  margin-block-start: 0;
+  font-size: 13px;
+  font-weight: 700;
+}
+
