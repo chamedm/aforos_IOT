@@ -7,10 +7,11 @@
 }
 
 .info-card__title{
-  font-size: large;
+  font-size: 25px;
   font-weight: bold;
   display: flex;
-  margin-left: 30px;
+  margin: 10px 0 10px 30px;
+
 }
 
 .info-card__data--first-row{
@@ -22,10 +23,14 @@
   display: flex;
   justify-content: space-evenly;
   margin: 0 20px 0 20px;
+  padding-bottom: 20px;
+  padding-top:20px
 }
 
 .info-card__item > p:nth-child(1){
   margin-block-end: 0;
+  font-size: 20px;
+  font-weight: 600;
 }
 .info-card__item > p:nth-child(2){
   margin-block-start: 0;
@@ -33,3 +38,9 @@
   font-weight: 700;
 }
 
+.info-card__current-devices--red{
+  color: #DA4625;
+}
+.info-card__current-devices--green{
+  color: #208B1E;
+}
