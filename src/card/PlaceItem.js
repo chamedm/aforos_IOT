@@ -1,5 +1,5 @@
 import React from 'react';
-import LineChart from '../card/LineChart';
+import LineChart from '../chart/LineChart';
 import InfoCard from '../card/InfoCard';
 import './PlaceItem.style.css';
 

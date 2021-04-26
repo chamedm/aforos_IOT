@@ -1,42 +1,47 @@
-import React from 'react';
+import React from "react";
 import Chart from "react-google-charts";
 
-function Linechart(){
-  return(
-    <Chart
-    width={1500}
-    height={500}
-    chartType="LineChart"
-    loader={<div>Loading Chart</div>}
-    data={[
-      ['Hora', 'Aforo'],
-      ['08:00', 10],
-      ['09:00', 25],
-      ['10:00', 35],
-      ['11:00', 38],
-      ['12:00', 23],
-      ['13:00', 40],
-      ['14:00', 35],
-      ['15:00', 52],
-      ['16:00', 23],
-      ['17:00', 20],
-      ['18:00', 33],
-      ['19:00', 15],
-      ['20:00', 27],
-      ['21:00', 4],
-      ['22:00', 2],
-    ]}
-    options={{
-      chartArea: { width: '60%' },
-      hAxis: {
-        minValue: 0,
-        maxValue: 100
-      },
+function LineChart({data}) {
+  const dataKeys = Object.keys(data);
+  const dataValues = Object.values(data);
+  const chartData = [["Hora", "Aforo"]];
+  for(let i = 0; i < dataKeys.length; i++){
+    chartData.push([dataKeys[i], dataValues[i]]);
+  }
 
-    }}
-    legendToggle
-  />
+  return (
+      <Chart
+        width={900}
+        height={300}
+        chartType="LineChart"
+        loader={<div>Loading Chart</div>}
+        data={chartData}
+        options={{
+          chartArea: { width: "90%" },
+          hAxis: {
+            minValue: 0,
+            maxValue: 100,
+          },
+          vAxis:{
+            gridlines: {
+              color: "#7A7A7A"
+            }
+          },
+          backgroundColor: {
+            fill: '#D6D6D6'
+          },
+          fontSize: 10,
+          legend:{
+            position: "none"
+          },
+          series: {
+            0: {color: "#A9294F"}
+          },
+          pointSize: 5
+        }}
+        
+      />
   );
-};
+}
 
-export default Linechart;
+export default LineChart;

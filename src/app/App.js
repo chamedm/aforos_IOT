@@ -2,6 +2,7 @@ import './App.css';
 import Navbar from './Navbar';
 
 import PlaceItem from '../card/PlaceItem';
+import SignIn from '../identity/SignIn';
 function App() {
 
   const cafeteriaData = {
@@ -43,12 +44,13 @@ function App() {
   };
   return (
     <div className="App">
-      <Navbar/>
+      <SignIn/>
+      {/* <Navbar/>
       <p className='title'>
         Dashboard
       </p>
       <PlaceItem data={cafeteriaData}/>
-      <PlaceItem data={jardinData}/>
+      <PlaceItem data={jardinData}/> */}
     </div>
   );
 }
