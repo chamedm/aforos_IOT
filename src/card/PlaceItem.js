@@ -4,11 +4,11 @@ import InfoCard from '../card/InfoCard';
 import './PlaceItem.style.css';
 
 
-function PlaceItem() {
+function PlaceItem({data}) {
   return(
     <div className="place-item">
-      <InfoCard/>
-      <LineChart/>
+      <InfoCard data={data}/>
+      <LineChart data={data.capacityLog}/>
     </div>
   )
 }

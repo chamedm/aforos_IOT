@@ -1,26 +1,7 @@
 import React from 'react';
 import './InfoCard.style.css'
 
-function InfoCard(){
-  const data = {
-    "id": "c1",
-    "name": "Cafeteria central",
-    "date": "01/30/2021",
-    "maxCapacity": 50,
-    "capacityLog": {
-      "06:00": 1,
-      "07:00": 3,
-      "08:00": 10,
-      "09:00": 25,
-      "10:00": 35,
-      "11:00": 38,
-      "12:00": 23,
-      "13:00": 40,
-      "14:00": 35,
-      "15:00": 52,
-    }
-  };
-
+function InfoCard({data}){
   
   const lastLogHour = getLastLogHour(data.capacityLog);
   const devices = data.capacityLog[`${lastLogHour}:00`];
@@ -31,7 +12,7 @@ function InfoCard(){
 
   return(
     <div className='info-card'>
-      <p className='info-card__title'>Cafetería central</p>
+      <p className='info-card__title'>{data.name}</p>
       <div className='info-card__data' >
         <div className='info-card__data--first-row'>
           <div className='info-card__item'>
@@ -64,7 +45,6 @@ const getLastLogHour = (devicesObj) => {
   const lastHour = hourKeys.map( 
     (key) =>{ 
       let options = key.split(":");
-      console.log(options)
       return options[0];
     })[hourKeys.length-1];
   
