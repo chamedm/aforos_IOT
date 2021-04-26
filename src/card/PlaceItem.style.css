@@ -1,0 +1,9 @@
+.place-item{
+  display: flex;
+    width: 90%;
+    margin: 50px;
+    padding: 20px;
+    background-color: #6F9EAF;
+    border-radius: 10px;
+    justify-content: space-evenly;
+}

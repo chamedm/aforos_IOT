@@ -1,7 +1,6 @@
 import React from 'react';
 import './Navbar.style.css';
-
-function Navbar(){
+function Navbar() {
   return(
     <div className='navbar'>
       <p className='navbar__title'>Aforos ITESO</p>
