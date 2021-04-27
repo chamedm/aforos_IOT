@@ -1,14 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './InfoCard.style.css'
 
-function InfoCard({data}){
-  
-  const lastLogHour = getLastLogHour(data.capacityLog);
-  const devices = data.capacityLog[`${lastLogHour}:00`];
-  const overPopulated = devices > data.maxCapacity;
+function InfoCard({data, openDialog}){
+  const [alertOverPopulated, setalertOverPopulated] = useState(false);
+  const [overPopulated, setOverPopulated] = useState(false);
+  const [devices, setDevices] = useState(0);
 
   const currentDate = new Date();
   const timeString = `${currentDate.getHours()}:${currentDate.getMinutes()}`;
+
+  useEffect(() => {
+    const setInitialData = () => {
+      const lastLogHour = getLastLogHour(data.capacityLog);
+      const devices = data.capacityLog[`${lastLogHour}:00`];
+      setDevices(devices)
+    }
+    setInitialData()
+  }, [data])
+
+  useEffect(() => {
+    const calculateStatus = () => {
+      if(devices > data.maxCapacity){
+        setOverPopulated(true);
+      }
+      else{
+        setOverPopulated(false);
+      }
+    }
+    calculateStatus()
+  }, [devices] )
+
+
+  useEffect(() => {
+    const updateAlert = () => {
+      if(overPopulated){
+        setOverPopulated(true)
+        openDialog(data)
+        
+      }
+      else
+        setOverPopulated(false)
+    }
+    updateAlert()
+  }, [overPopulated])
+
 
   return(
     <div className='info-card'>
@@ -50,5 +85,6 @@ const getLastLogHour = (devicesObj) => {
   
   return lastHour;
 }
+
 
 export default InfoCard;

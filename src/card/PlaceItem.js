@@ -1,13 +1,13 @@
 import React from 'react';
-import LineChart from '../card/LineChart';
+import LineChart from '../chart/LineChart';
 import InfoCard from '../card/InfoCard';
 import './PlaceItem.style.css';
 
 
-function PlaceItem({data}) {
+function PlaceItem({data, openDialog}) {
   return(
     <div className="place-item">
-      <InfoCard data={data}/>
+      <InfoCard data={data} openDialog={openDialog}/>
       <LineChart data={data.capacityLog}/>
     </div>
   )
