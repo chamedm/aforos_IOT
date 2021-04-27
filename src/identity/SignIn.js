@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import {BrowserRouter as Router, Link} from 'react-router-dom';;
+import { Link} from 'react-router-dom';;
 
 
 const useStyles = makeStyles((theme) => ({
@@ -43,6 +43,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
+  const [email, setEmail] = React.useState('');
+  const [psw, setPsw] = React.useState('');
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value)
+  }
+
+  const handlePswChange = (event) => {
+    setPsw(event.target.value);
+  }
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -69,6 +79,9 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={handleEmailChange}
+              value={email}
+              error={!validateEmail(email)}
             />
             <TextField
               variant="outlined"
@@ -80,6 +93,8 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={handlePswChange}
+              value={psw}
             />
             <Link to='/dashboard'>
               <Button
@@ -88,6 +103,7 @@ export default function SignIn() {
                 variant="contained"
                 color="primary"
                 className={classes.submit}
+                disabled={!validateEmail(email)}
               >
                 Iniciar sesión
               </Button> 
@@ -99,3 +115,8 @@ export default function SignIn() {
     </Grid>
   );
 };
+
+function validateEmail(email) {
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
