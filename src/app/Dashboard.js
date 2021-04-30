@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PlaceItem from "./../card/PlaceItem";
 import Navbar from "./Navbar";
 
@@ -14,9 +14,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
+const BE_URL = "https://server2-excellent-dog-jq.mybluemix.net/api/grafica";
+
 function Dashboard() {
   const [alertOpen, setAlertOpen] = React.useState(false);
   const [dataAlert, setDataAlert] = React.useState({});
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [data, setData] = React.useState({});
 
   const handleClickOpen = (data) => {
     setAlertOpen(true);
@@ -30,7 +34,7 @@ function Dashboard() {
   const cafeteriaData = {
     id: "c1",
     name: "Cafeteria central",
-    date: "01/30/2021",
+    date: "29/04/2021",
     maxCapacity: 50,
     capacityLog: {
       "06:00": 1,
@@ -49,7 +53,7 @@ function Dashboard() {
   const jardinData = {
     id: "c2",
     name: "Jardín central",
-    date: "01/30/2021",
+    date: "29/04/2021",
     maxCapacity: 30,
     capacityLog: {
       "06:00": 1,
@@ -64,6 +68,25 @@ function Dashboard() {
       "15:00": 28,
     },
   };
+
+  useEffect(() => {
+    fetch(BE_URL, {
+      method: "GET",
+      headers: new Headers({
+        Accept: "application/json"
+      })
+    })
+    .then(res => res.json())
+    .then(response => {
+      if(response.status == 200) {
+        console.log(response);
+      }
+    }
+    ).catch(e => {
+      console.log(e)
+    })
+  }, )
+
   return (
     <div className="App">
       <Navbar />
