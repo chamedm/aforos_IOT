@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import './InfoCard.style.css'
 
 function InfoCard({data, openDialog}){
-  const [alertOverPopulated, setalertOverPopulated] = useState(false);
   const [overPopulated, setOverPopulated] = useState(false);
   const [devices, setDevices] = useState(0);
 
   const currentDate = new Date();
   const timeString = `${currentDate.getHours()}:${currentDate.getMinutes()}`;
+
+  const handleOpenDialog = () => {
+    openDialog(data)
+  }
 
   useEffect(() => {
     const setInitialData = () => {
@@ -28,15 +31,13 @@ function InfoCard({data, openDialog}){
       }
     }
     calculateStatus()
-  }, [devices] )
+  }, [devices, data.maxCapacity] )
 
 
   useEffect(() => {
     const updateAlert = () => {
       if(overPopulated){
-        setOverPopulated(true)
-        openDialog(data)
-        
+        handleOpenDialog()
       }
       else
         setOverPopulated(false)
