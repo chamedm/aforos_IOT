@@ -50,31 +50,31 @@ function Dashboard() {
     },
   };
 
-  const jardinData = {
-    id: "c2",
-    name: "Jardín central",
-    date: "29/04/2021",
-    maxCapacity: 30,
-    capacityLog: {
-      "06:00": 1,
-      "07:00": 1,
-      "08:00": 2,
-      "09:00": 3,
-      "10:00": 5,
-      "11:00": 21,
-      "12:00": 15,
-      "13:00": 26,
-      "14:00": 23,
-      "15:00": 28,
-    },
-  };
+  // const jardinData = {
+  //   id: "c2",
+  //   name: "Jardín central",
+  //   date: "29/04/2021",
+  //   maxCapacity: 30,
+  //   capacityLog: {
+  //     "06:00": 1,
+  //     "07:00": 1,
+  //     "08:00": 2,
+  //     "09:00": 3,
+  //     "10:00": 5,
+  //     "11:00": 21,
+  //     "12:00": 15,
+  //     "13:00": 26,
+  //     "14:00": 23,
+  //     "15:00": 28,
+  //   },
+  // };
 
   useEffect(() => {
     fetch(BE_URL, {
       method: "GET",
     })
     .then(res => {
-      if(res.status == 200)
+      if(res.status === 200)
        return res.json()
       })
     .then(response => {
