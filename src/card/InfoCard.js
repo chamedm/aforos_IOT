@@ -43,7 +43,7 @@ function InfoCard({data, openDialog}){
         setOverPopulated(false)
     }
     updateAlert()
-  }, [overPopulated])
+  }, [overPopulated])// eslint-disable-line react-hooks/exhaustive-deps
 
 
   return(
