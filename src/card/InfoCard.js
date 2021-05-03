@@ -6,7 +6,7 @@ function InfoCard({data, openDialog}){
   const [devices, setDevices] = useState(0);
 
   const currentDate = new Date();
-  const timeString = `${currentDate.getHours()}:${currentDate.getMinutes()}`;
+  const timeString = `${currentDate.getHours()}:${currentDate.getMinutes()<10 ? "0"(currentDate.getMinutes()) : currentDate.getMinutes()}`;
 
   const handleOpenDialog = () => {
     openDialog(data)
