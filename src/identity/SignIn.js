@@ -7,7 +7,6 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link} from 'react-router-dom';;
 
 
 const useStyles = makeStyles((theme) => ({
@@ -41,7 +40,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+async function loginUser(credentials) {
+  return fetch('https://server2-excellent-dog-jq.mybluemix.net/api/auth/register', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(credentials)
+  })
+    .then(data => data.json())
+ }
+
+export default function SignIn({setToken}) {
   const classes = useStyles();
   const [email, setEmail] = React.useState('');
   const [psw, setPsw] = React.useState('');
@@ -52,6 +62,16 @@ export default function SignIn() {
 
   const handlePswChange = (event) => {
     setPsw(event.target.value);
+  }
+
+  
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const token = await loginUser({
+      "email":email,
+      "password":psw
+    });
+    setToken(token);
   }
 
   return (
@@ -68,7 +88,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h6">
             Iniciar sesión
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -96,7 +116,6 @@ export default function SignIn() {
               onChange={handlePswChange}
               value={psw}
             />
-            <Link to='/dashboard'>
               <Button
                 type="submit"
                 fullWidth
@@ -107,8 +126,6 @@ export default function SignIn() {
               >
                 Iniciar sesión
               </Button> 
-            </Link>
-
           </form>
         </div>
       </Grid>

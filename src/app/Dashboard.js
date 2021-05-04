@@ -78,7 +78,6 @@ function Dashboard() {
        return res.json()
       })
     .then(response => {
-      console.log(response);
       setData(response);
       setIsLoading(false);
     }
