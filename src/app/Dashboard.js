@@ -2,13 +2,13 @@ import React, { useEffect } from "react";
 import PlaceItem from "./../card/PlaceItem";
 import Navbar from "./Navbar";
 
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Slide from '@material-ui/core/Slide';
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Slide from "@material-ui/core/Slide";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -73,56 +73,53 @@ function Dashboard() {
     fetch(BE_URL, {
       method: "GET",
     })
-    .then(res => {
-      if(res.status === 200)
-       return res.json()
+      .then((res) => {
+        if (res.status === 200) return res.json();
       })
-    .then(response => {
-      setData(response);
-      setIsLoading(false);
-    }
-    ).catch(e => {
-      console.log(e)
-    })
-  },[] )
+      .then((response) => {
+        setData(response);
+        setIsLoading(false);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
 
   return (
     <div className="App">
       <Navbar />
       <p className="title">Dashboard</p>
-      {isLoading ? 
+      {isLoading ? (
         <p>Loading...</p>
-      
-    :
-      <>
-            <Dialog
-        open={alertOpen}
-        TransitionComponent={Transition}
-        keepMounted
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-slide-title"
-        aria-describedby="alert-dialog-slide-description"
-      >
-        <DialogTitle id="alert-dialog-slide-title">
-          {`¡Alerta! Aforo excedido en ${dataAlert.name}`  }
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-          {`El aforo permitido en ${dataAlert.name} es de ${dataAlert.maxCapacity} y se ha excedido.
+      ) : (
+        <>
+          <Dialog
+            open={alertOpen}
+            TransitionComponent={Transition}
+            keepMounted
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-slide-title"
+            aria-describedby="alert-dialog-slide-description"
+          >
+            <DialogTitle id="alert-dialog-slide-title">
+              {`¡Alerta! Aforo excedido en ${dataAlert.name}`}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-slide-description">
+                {`El aforo permitido en ${dataAlert.name} es de ${dataAlert.maxCapacity} y se ha excedido.
           \n Notifique a la brigada de cuidado de Aforos`}
-
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Aceptar
-          </Button>
-        </DialogActions>
-      </Dialog>
-      <PlaceItem data={cafeteriaData} openDialog={handleClickOpen} />
-      <PlaceItem data={data} openDialog={handleClickOpen}  />
-      </>    
-    }
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose} color="primary">
+                Aceptar
+              </Button>
+            </DialogActions>
+          </Dialog>
+          <PlaceItem data={cafeteriaData} openDialog={handleClickOpen} />
+          <PlaceItem data={data} openDialog={handleClickOpen} />
+        </>
+      )}
     </div>
   );
 }

@@ -4,6 +4,31 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { NavLink} from 'react-router-dom';
 
 import './Navbar.style.css';
+import SignIn from '../identity/SignIn';
+
+
+async function logOutUser() {
+  const tokenString = localStorage.getItem("token");
+  console.log(tokenString);
+  return fetch(
+    "https://server2-excellent-dog-jq.mybluemix.net/api/auth/logout",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: tokenString,
+    }
+  ).then((data) =>{ 
+    console.log(data);
+    if(data.status === 200){
+      localStorage.removeItem("token");
+      document.location.reload();
+    }
+    return data.json()});
+}
+
+
 function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -20,14 +45,16 @@ function Navbar() {
       <div className="navbar__actions">
         <button>Dashboard</button>
         <button>Configuracion</button>
-        <button onClick={handleClick}>Cuenta</button>
+        <button onClick={handleClick}>
+            Cuenta
+        </button>
       </div>
       <Menu
         id="simple-menu" anchorEl={anchorEl}
         keepMounted open={Boolean(anchorEl)}
         onClose={handleClose}>
-          <MenuItem onClick={handleClose}>
-            <NavLink to='/' exact>Cerrar sesión</NavLink>
+          <MenuItem onClick={logOutUser}>
+            <NavLink to='/' exact >Cerrar sesión</NavLink>
           </MenuItem>
       </Menu>
     </div>
