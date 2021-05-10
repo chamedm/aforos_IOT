@@ -34,7 +34,7 @@ function Dashboard() {
   const cafeteriaData = {
     id: "c1",
     name: "Galería Jardín",
-    date: "4/05/2021",
+    date: "10/05/2021",
     maxCapacity: 30,
     capacityLog: {
       "06:00": 1,
@@ -47,6 +47,12 @@ function Dashboard() {
       "13:00": 8,
       "14:00": 10,
       "15:00": 35,
+      "16:00": 4,
+      "17:00": 3,
+      "18:00": 10,
+      "19:00": 25,
+      "20:00": 20,
+      
     },
   };
 

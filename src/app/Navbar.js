@@ -4,7 +4,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { NavLink} from 'react-router-dom';
 
 import './Navbar.style.css';
-import SignIn from '../identity/SignIn';
 
 
 async function logOutUser() {
