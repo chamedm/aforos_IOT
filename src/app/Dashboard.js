@@ -2,13 +2,13 @@ import React, { useEffect } from "react";
 import PlaceItem from "./../card/PlaceItem";
 import Navbar from "./Navbar";
 
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Slide from '@material-ui/core/Slide';
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Slide from "@material-ui/core/Slide";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -33,20 +33,26 @@ function Dashboard() {
 
   const cafeteriaData = {
     id: "c1",
-    name: "Cafeteria central",
-    date: "29/04/2021",
-    maxCapacity: 50,
+    name: "Galería Jardín",
+    date: "10/05/2021",
+    maxCapacity: 30,
     capacityLog: {
       "06:00": 1,
       "07:00": 3,
       "08:00": 10,
       "09:00": 25,
-      "10:00": 35,
-      "11:00": 38,
-      "12:00": 23,
-      "13:00": 40,
-      "14:00": 35,
-      "15:00": 52,
+      "10:00": 20,
+      "11:00": 12,
+      "12:00": 5,
+      "13:00": 8,
+      "14:00": 10,
+      "15:00": 35,
+      "16:00": 4,
+      "17:00": 3,
+      "18:00": 10,
+      "19:00": 25,
+      "20:00": 20,
+      
     },
   };
 
@@ -73,57 +79,53 @@ function Dashboard() {
     fetch(BE_URL, {
       method: "GET",
     })
-    .then(res => {
-      if(res.status === 200)
-       return res.json()
+      .then((res) => {
+        if (res.status === 200) return res.json();
       })
-    .then(response => {
-      console.log(response);
-      setData(response);
-      setIsLoading(false);
-    }
-    ).catch(e => {
-      console.log(e)
-    })
-  },[] )
+      .then((response) => {
+        setData(response);
+        setIsLoading(false);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
 
   return (
     <div className="App">
       <Navbar />
       <p className="title">Dashboard</p>
-      {isLoading ? 
+      {isLoading ? (
         <p>Loading...</p>
-      
-    :
-      <>
-            <Dialog
-        open={alertOpen}
-        TransitionComponent={Transition}
-        keepMounted
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-slide-title"
-        aria-describedby="alert-dialog-slide-description"
-      >
-        <DialogTitle id="alert-dialog-slide-title">
-          {`¡Alerta! Aforo excedido en ${dataAlert.name}`  }
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-          {`El aforo permitido en ${dataAlert.name} es de ${dataAlert.maxCapacity} y se ha excedido.
+      ) : (
+        <>
+          <Dialog
+            open={alertOpen}
+            TransitionComponent={Transition}
+            keepMounted
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-slide-title"
+            aria-describedby="alert-dialog-slide-description"
+          >
+            <DialogTitle id="alert-dialog-slide-title">
+              {`¡Alerta! Aforo excedido en ${dataAlert.name}`}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-slide-description">
+                {`El aforo permitido en ${dataAlert.name} es de ${dataAlert.maxCapacity} y se ha excedido.
           \n Notifique a la brigada de cuidado de Aforos`}
-
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Aceptar
-          </Button>
-        </DialogActions>
-      </Dialog>
-      <PlaceItem data={cafeteriaData} openDialog={handleClickOpen} />
-      <PlaceItem data={data} openDialog={handleClickOpen}  />
-      </>    
-    }
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose} color="primary">
+                Aceptar
+              </Button>
+            </DialogActions>
+          </Dialog>
+          <PlaceItem data={cafeteriaData} openDialog={handleClickOpen} />
+          <PlaceItem data={data} openDialog={handleClickOpen} />
+        </>
+      )}
     </div>
   );
 }

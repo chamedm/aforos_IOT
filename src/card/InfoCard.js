@@ -6,7 +6,7 @@ function InfoCard({data, openDialog}){
   const [devices, setDevices] = useState(0);
 
   const currentDate = new Date();
-  const timeString = `${currentDate.getHours()}:${currentDate.getMinutes()}`;
+  const timeString = `${currentDate.getHours()}:${currentDate.getMinutes()<10 ? 0(currentDate.getMinutes()) : currentDate.getMinutes()}`;
 
   const handleOpenDialog = () => {
     openDialog(data)
@@ -56,7 +56,7 @@ function InfoCard({data, openDialog}){
             <p>Aforo permitido</p>
           </div>
           <div className='info-card__item'>
-            <p className={"info-card__current-devices--"+ (overPopulated ? 'red' : 'green')}>{devices}</p>
+            <p className={"info-card__current-devices--"+ (overPopulated ? 'red' : 'green')}>{Math.round(devices)}</p>
             <p>Dispositivos</p>
           </div>
         </div>

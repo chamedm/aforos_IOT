@@ -6,7 +6,9 @@ function LineChart({data}) {
   const dataValues = Object.values(data);
   const chartData = [["Hora", "Aforo"]];
   for(let i = 0; i < dataKeys.length; i++){
-    chartData.push([dataKeys[i], dataValues[i]]);
+    let value = dataValues[i];
+    value = Math.round(value);
+    chartData.push([dataKeys[i], value]);
   }
 
   return (
