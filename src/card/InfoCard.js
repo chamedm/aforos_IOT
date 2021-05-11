@@ -56,7 +56,7 @@ function InfoCard({data, openDialog}){
             <p>Aforo permitido</p>
           </div>
           <div className='info-card__item'>
-            <p className={"info-card__current-devices--"+ (overPopulated ? 'red' : 'green')}>{devices}</p>
+            <p className={"info-card__current-devices--"+ (overPopulated ? 'red' : 'green')}>{Math.round(devices)}</p>
             <p>Dispositivos</p>
           </div>
         </div>
